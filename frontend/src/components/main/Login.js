@@ -1,9 +1,10 @@
 import { Formik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const Login = () => {
+
 
     const loginSubmit = async (formdata, { resetForm, setSubmitting }) => {
         console.log(formdata)
@@ -30,6 +31,7 @@ const Login = () => {
             const data = await res.json();
             console.log(data);
             sessionStorage.setItem('user', JSON.stringify(data));
+            resetForm();
         }
         else if (res.status === 401) {
             Swal.fire({

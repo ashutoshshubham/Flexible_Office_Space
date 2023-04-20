@@ -18,7 +18,7 @@ function App() {
           <Route element={<Login />} path='login' />
         </Route>
         <Route element={<User />} path='user'>
-          <Route element={<AddSpace/>} path='add_space'/>
+          <Route element={<AddSpace />} path='add_space' />
 
         </Route>
       </Routes>
