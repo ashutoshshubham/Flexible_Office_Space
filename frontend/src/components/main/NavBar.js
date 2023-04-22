@@ -1,7 +1,46 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useUserContext } from "../../context/UserProvider";
+
 
 const NavBar = () => {
+
+    const { loggedIn, setLoggedIn, logout } = useUserContext();
+
+    const showLoggedIn = () => {
+        if (!loggedIn) {
+            return (
+                <>
+                    <li className="nav-item">
+                        <NavLink className="nav-link text-white" aria-current="page" to="/main/login">
+                            Login
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link text-white" aria-current="page" to="/main/signup">
+                            SignUp
+                        </NavLink>
+                    </li>
+                </>
+            );
+        }
+    }
+
+    // const showLogout = () => {
+    //     if (loggedIn) {
+    //         return (
+    //             <li className="nav-item">
+    //                 <button className="btn btn-danger ms-3" aria-current="page" onClick={logout}>
+    //                     Logout
+    //                 </button>
+    //             </li>
+    //         );
+    //     }
+    // }
+
+
+
+
     return (
         <div>
 
@@ -50,7 +89,7 @@ const NavBar = () => {
                                     Browse Space
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <NavLink className="nav-link text-white" to="login">
                                     Login
                                 </NavLink>
@@ -59,46 +98,12 @@ const NavBar = () => {
                                 <NavLink className="nav-link text-white" to="signup">
                                     SignUp
                                 </NavLink>
-                            </li>
-
-                            {/* Navbar dropdown */}
-                            {/* <li className="nav-item dropdown">
-                                <a
-                                    className="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                    data-mdb-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    Dropdown
-                                </a>
-                            
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Another action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr className="dropdown-divider" />
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Something else here
-                                        </a>
-                                    </li>
-                                </ul>
                             </li> */}
 
-                            {/* <li className="nav-item">
-                                <a className="nav-link disabled">Disabled</a>
-                            </li> */}
+                            {showLoggedIn()}
+                            {/* {showLogout()} */}
+
+
                         </ul>
                         {/* Left links */}
                     </div>

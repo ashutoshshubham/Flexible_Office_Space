@@ -17,7 +17,7 @@ const UserAuth = ({children}) => {
             text: 'Please Login First!!',
         })
         // store the current address in the session storage
-        return <Navigate to="/signin" />
+        return <Navigate to="/main/login" />
     }
 }
 

@@ -69,7 +69,7 @@ const SignUp = () => {
                             }
                         </Formik>
 
-                        <p className='text-center'>Already have account? <Link to='/signin'>SignIn</Link></p>
+                        <p className='text-center'>Already have account? <Link to='/main/login'>LogIn</Link></p>
 
 
                     </div>
