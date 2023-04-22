@@ -5,11 +5,19 @@ const NavBar = () => {
     return (
         <div>
 
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                {/* Container wrapper */}
-                <div className="container-fluid">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-success">
 
-                    OFFICE SPACE
+
+                {/* Container wrapper */}
+                <div className="container text-white">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Office_building_icon.png"
+                        height="35"
+                        alt="MDB Logo"
+                        loading="lazy"
+                    />
+
+                    <h4>OFFICE SPACE</h4>
                     {/* Toggle button */}
                     <button
                         className="navbar-toggler"
@@ -23,28 +31,36 @@ const NavBar = () => {
                         <i className="fas fa-bars" />
                     </button>
                     {/* Collapsible wrapper */}
+
+
+
                     <div
                         className="collapse navbar-collapse justify-content-center"
                         id="navbarCenteredExample"
                     >
                         {/* Left links */}
-                        <ul className="navbar-nav mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" aria-current="page" to="home">
+                        <ul className="navbar-nav mb-2 mb-lg-0 fs-5">
+                            <li className="nav-item ">
+                                <NavLink className="nav-link text-white" aria-current="page" to="home">
                                     Home
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="login">
+                                <NavLink className="nav-link text-white" aria-current="page" to="browsespace">
+                                    Browse Space
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link text-white" to="login">
                                     Login
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="signup">
+                                <NavLink className="nav-link text-white" to="signup">
                                     SignUp
                                 </NavLink>
                             </li>
-                            
+
                             {/* Navbar dropdown */}
                             {/* <li className="nav-item dropdown">
                                 <a

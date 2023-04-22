@@ -1,6 +1,10 @@
 const { Types } = require('mongoose');
 const {Schema, model} = require('../connection');  
 const mySchema = new Schema({
+    providerName : String,
+    providerContact : Number,
+    providerEmail : String,
+    name : String,
     size : String,
     rate : String,
     facilities : String,

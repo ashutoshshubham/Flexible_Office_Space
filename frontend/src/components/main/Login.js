@@ -1,9 +1,11 @@
 import { Formik } from 'formik'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const Login = () => {
+
+    const navigate = useNavigate()
 
 
     const loginSubmit = async (formdata, { resetForm, setSubmitting }) => {
@@ -31,6 +33,7 @@ const Login = () => {
             const data = await res.json();
             console.log(data);
             sessionStorage.setItem('user', JSON.stringify(data));
+            navigate('/user/add_space')
             resetForm();
         }
         else if (res.status === 401) {
