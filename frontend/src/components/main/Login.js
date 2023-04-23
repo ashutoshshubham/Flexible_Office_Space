@@ -32,8 +32,8 @@ const Login = () => {
             // setLoggedIn(true)
             const data = await res.json();
             console.log(data);
-            sessionStorage.setItem('user', JSON.stringify(data));
-            navigate('/user/add_space')
+            sessionStorage.setItem('vendor', JSON.stringify(data));
+            navigate('/vendor/add_space')
             resetForm();
         }
         else if (res.status === 401) {
