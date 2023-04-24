@@ -32,14 +32,16 @@ const BrowseSpace = () => {
   };
 
   const filterBar = () => {
-    return <div className="card">
+    return (
+      <div className="card">
         <div className="card-header">
-            <h4 className="m-0">Filter Spaces</h4>
+          <h4 className="m-0">Filter Spaces</h4>
         </div>
         <div className="card-body"></div>
         <div className="card-footer"></div>
-    </div>
-  }
+      </div>
+    );
+  };
 
   const displayCategoryData = () => {
     return categories.map((cat, index) => (
@@ -61,9 +63,8 @@ const BrowseSpace = () => {
 
   const displaySpaceData = () => {
     if (!loading) {
-      return (
-        allSpaceData.map((space, index) => (
-            <div className="row justify-content-center mb-3" key={space._id}>
+      return allSpaceData.map((space, index) => (
+        <div className="row justify-content-center mb-3" key={space._id}>
           <div className="col-md-12 col-xl-12">
             <div className="card shadow-0 border rounded-3">
               <div className="card-body">
@@ -71,7 +72,11 @@ const BrowseSpace = () => {
                   <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div className="bg-image hover-zoom ripple rounded ripple-surface">
                       <img
-                        src={space.image ? space.image : "/images/space-placeholder.jpg"}
+                        src={
+                          space.image
+                            ? space.image
+                            : "/images/space-placeholder.jpg"
+                        }
                         className="w-100"
                         alt=""
                       />
@@ -89,13 +94,12 @@ const BrowseSpace = () => {
                   </div>
                   <div className="col-md-6 col-lg-6 col-xl-6">
                     <h5>{space.name}</h5>
-                    
+
                     <div className="mt-1 mb-0 text-muted small">
                       <span className="text-primary"> • </span>
                       <span>{space.location}</span>
-                      
                     </div>
-                    
+
                     <p className="text-truncate mb-4 mb-md-0">
                       {space.facilities}
                     </p>
@@ -103,13 +107,17 @@ const BrowseSpace = () => {
                   <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                     <div className="d-flex flex-row align-items-center mb-1">
                       <h4 className="mb-1 me-1">₹{space.rate}</h4>
-                     
                     </div>
                     <div className="d-flex flex-column mt-4">
-                      <Link to={`/user/book/${space._id}`} className="btn btn-primary btn-sm" type="button">
+                      <Link
+                        to={`/user/book/${space._id}`}
+                        className="btn btn-primary btn-sm"
+                        type="button"
+                      >
                         Book Now
                       </Link>
-                      <Link to={`/main/spacedetails/${space._id}`}
+                      <Link
+                        to={`/main/spacedetails/${space._id}`}
                         className="btn btn-outline-primary btn-sm mt-2"
                         type="button"
                       >
@@ -122,9 +130,7 @@ const BrowseSpace = () => {
             </div>
           </div>
         </div>
-        ))
-        
-      );
+      ));
     } else {
       return <div>Loading...</div>;
     }
@@ -137,41 +143,38 @@ const BrowseSpace = () => {
       </header>
       <div className="container-fluid">
         <div className="row my-3">
-          <div className="col-md-3">
-            {filterBar()}
-          </div>
+          <div className="col-md-3">{filterBar()}</div>
           <div className="col-md-9">
             <div className="d-flex">{displayCategoryData()}</div>
             <hr />
             {displaySpaceData()}
             <nav aria-label="..." className="my-3">
-  <ul className="pagination pagination-circle">
-    <li className="page-item">
-      <a className="page-link">Previous</a>
-    </li>
-    <li className="page-item">
-      <a className="page-link" href="#">
-        1
-      </a>
-    </li>
-    <li className="page-item active" aria-current="page">
-      <a className="page-link" href="#">
-        2 <span className="visually-hidden">(current)</span>
-      </a>
-    </li>
-    <li className="page-item">
-      <a className="page-link" href="#">
-        3
-      </a>
-    </li>
-    <li className="page-item">
-      <a className="page-link" href="#">
-        Next
-      </a>
-    </li>
-  </ul>
-</nav>
-
+              <ul className="pagination pagination-circle">
+                <li className="page-item">
+                  <a className="page-link">Previous</a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    1
+                  </a>
+                </li>
+                <li className="page-item active" aria-current="page">
+                  <a className="page-link" href="#">
+                    2 <span className="visually-hidden">(current)</span>
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    3
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    Next
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
