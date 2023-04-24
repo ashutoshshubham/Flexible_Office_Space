@@ -2,7 +2,7 @@
 
 const {Router} = require('express');       // importing Router from express
 
-const Model = require('../models/addSpaceModel')  //importing model from userModel
+const Model = require('../models/SpaceModel')  //importing model from userModel
 
 
 

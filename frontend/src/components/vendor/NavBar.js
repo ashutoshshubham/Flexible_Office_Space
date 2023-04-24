@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useUserContext } from "../../context/UserProvider";
+import { useVendorContext } from '../../context/VendorProvider';
 
 const NavBar = () => {
-    const { loggedIn, setLoggedIn, logout } = useUserContext();
+    const { loggedIn, setLoggedIn, logout } = useVendorContext();
     const [currentUser, setCurrentUser] = useState(
-        JSON.parse(sessionStorage.getItem("user"))
+        JSON.parse(sessionStorage.getItem("vendor"))
     );
+
 
     // const showLoggedIn = () => {
     //     if (!loggedIn) {
@@ -50,7 +51,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-danger">
                 <div className="container">
                     <img
                         src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Office_building_icon.png"
@@ -73,15 +74,15 @@ const NavBar = () => {
                     >
                         <i className="fas fa-bars" />
                     </button>
-                    <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
+                    <div className="collapse navbar-collapse  justify-content-end" id="navbarNavAltMarkup">
                         <div className="navbar-nav  fs-5">
                             {/* <NavLink className="nav-link text-white" aria-current="page" to="/main/home">
                                 <b>HOME</b>
                             </NavLink> */}
-                            <NavLink className="nav-link text-white" aria-current="page" to="/user/add_space">
+                            <NavLink className="nav-link text-white" aria-current="page" to="/vendor/add_space">
                                 <b>ADD SPACE</b>
                             </NavLink>
-                            <NavLink className="nav-link text-white" to="/user/manage_space">
+                            <NavLink className="nav-link text-white" to="/vendor/manage_space">
                                 <b>MANAGE SPACE</b>
                             </NavLink>
                             {/* <NavLink className="nav-link text-white" to="/user/profile">

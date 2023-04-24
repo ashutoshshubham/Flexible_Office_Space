@@ -2,10 +2,13 @@ import { Formik } from 'formik'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { useVendorContext } from '../../context/VendorProvider'
 
 const Login = () => {
 
     const navigate = useNavigate()
+
+    const {loggedIn, setLoggedIn} = useVendorContext();
 
 
     const loginSubmit = async (formdata, { resetForm, setSubmitting }) => {
@@ -29,7 +32,7 @@ const Login = () => {
                 title: 'Success',
                 text: 'Login Successful'
             })
-            // setLoggedIn(true)
+            setLoggedIn(true)       //to show logout button without page refresh
             const data = await res.json();
             console.log(data);
             sessionStorage.setItem('vendor', JSON.stringify(data));

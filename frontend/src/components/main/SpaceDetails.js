@@ -1,8 +1,69 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const SpaceDetails = () => {
+
+  const { spaceid } = useParams()
+  const [space, setSpace] = useState([])
+
+  const moreDetails = async () => {
+
+    // console.log(id);
+
+    const res = await fetch('http://localhost:5000/addSpace/getbyid/' + spaceid)
+    console.log(res.status);
+    if (res.status === 200) {
+      const data = await res.json()
+      setSpace(data)
+      console.log(data);
+    }
+  }
+
+  useEffect(() => {
+    moreDetails();
+  }, [])
+
+  const displayDetails = () => {
+    return (
+      <div className="card">
+        <div className="card-body">
+          <h2 className="card-title">{space.name}</h2>
+          <p className="card-text">
+            <b>Size :</b> {space.size} sq feet
+          </p>
+          <p className="card-text">
+             <b>Rate : ₹</b> {space.rate} per hours
+          </p>
+          <p className="card-text">
+            <b>Location :</b> {space.location}
+          </p>
+          <p className="card-text">
+            <b>Facilities :</b> {space.facilities}
+          </p>
+          <p className="card-text">
+            <b>Vendor's Name :</b> {space.providerName}
+          </p>
+          <p className="card-text">
+            <b>Vendor's Contact :</b> {space.providerContact}
+          </p>
+          <p className="card-text">
+            <b>Vendor's Email :</b> {space.providerEmail}
+          </p>
+          {/* <button type="button" className="btn btn-primary">
+            Button
+          </button> */}
+        </div>
+      </div>
+    )
+  }
+
+
   return (
-    <div>SpaceDetails</div>
+    <div className='container'>
+
+      {displayDetails()}
+
+    </div>
   )
 }
 
