@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 const AddSpace = () => {
 
-    const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')))
+    const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('vendor')))
     console.log(currentUser)
 
     const spaceData = async (formdata, { resetForm }) => {
@@ -97,10 +97,14 @@ const AddSpace = () => {
                                                 <MDBTextArea className='my-3' label='Location' rows={3} id='location' value={values.location} onChange={handleChange} />
                                                 <MDBTextArea className='my-3' label='Facilities' id='facilities' value={values.facilities} onChange={handleChange} rows={4} />
 
+                                                <div className="my-3">
+                                                    <label className="form-label mx-2" for="typeText">Upload Image</label>
+                                                    <input type="file" id="" />
+                                                </div>
+
                                                 <button type="submit" className="btn btn-success w-100">
                                                     Submit
                                                 </button>
-
                                             </form>
                                         )}
 

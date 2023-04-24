@@ -2,7 +2,7 @@ const express = require('express');          //method to import any package, her
 
 //import userRouter
 const userRouter = require('./routers/userRouter');
-const spaceRouter = require('./routers/addSpaceRouter');
+const spaceRouter = require('./routers/SpaceRouter');
 
 
 // const feedbackRouter = require('./routers/feedbackRouter');

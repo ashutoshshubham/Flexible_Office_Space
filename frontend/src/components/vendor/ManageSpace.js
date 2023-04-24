@@ -11,15 +11,15 @@ import Swal from 'sweetalert2';
 
 const ManageSpace = () => {
 
-    const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')))
-    console.log(currentUser)
+    const [currentVendor, setCurrentVendor] = useState(JSON.parse(sessionStorage.getItem('vendor')))
+    console.log(currentVendor)
 
     const [spaceData, setSpaceData] = useState([])
     const [loading, setLoading] = useState(false)
 
     const fetchSpaceData = async () => {
         setLoading(true);
-        const res = await fetch('http://localhost:5000/addSpace/getbyuser/' + currentUser._id)
+        const res = await fetch('http://localhost:5000/addSpace/getbyuser/' + currentVendor._id)
         setLoading(false);
         console.log(res.status)
         // console.log(currentUser._id)
@@ -28,7 +28,6 @@ const ManageSpace = () => {
             const data = await res.json();
             console.log(data)
             setSpaceData(data)
-
         }
     }
 
@@ -80,7 +79,7 @@ const ManageSpace = () => {
                                                 Provider's Name : {space.providerName}
                                             </Typography>
                                             <Typography>
-                                            Provider's Contact : {space.providerContact}
+                                                Provider's Contact : {space.providerContact}
                                             </Typography>
                                             <Typography>
                                                 Provider's Email : {space.providerEmail}
@@ -99,7 +98,7 @@ const ManageSpace = () => {
                                             </Typography>
                                         </Typography>
                                     </AccordionDetails>
-                                    <Link to={'/user/updateData/' + space._id}>
+                                    <Link to={'/vendor/updateData/' + space._id}>
                                         <Button variant="contained" color='success' sx={{ marginLeft: '15px', marginBottom: '15px' }}>Update Data</Button>
                                     </Link>
                                     <Button variant="contained" color='error' sx={{ marginLeft: '15px', marginBottom: '15px' }} onClick={() => (deleteSpaceData(space._id))}>Delete</Button>

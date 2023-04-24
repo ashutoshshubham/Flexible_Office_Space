@@ -11,6 +11,7 @@ const mySchema = new Schema({
     password : String,
     createdAt : Date,
     verified: {type: Boolean, default: false},
+    // role : {String, default: 'user'},
     // organisation : {type : Types.ObjectId, ref: 'organisation'},
     // feedback : {type : Types.ObjectId, ref: 'feedback'}
 })
