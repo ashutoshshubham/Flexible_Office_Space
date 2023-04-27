@@ -161,7 +161,6 @@ const BrowseSpace = () => {
             </div>
           </div>
         ))
-
       );
     } else {
       return <div>Loading...</div>;
@@ -175,9 +174,7 @@ const BrowseSpace = () => {
       </header>
       <div className="container-fluid">
         <div className="row my-3">
-          <div className="col-md-3">
-            {filterBar()}
-          </div>
+          <div className="col-md-3">{filterBar()}</div>
           <div className="col-md-9">
             <div className="d-flex">
               {/* <button className="btn btn-primary btn-rounded" onClick={fetchAllSpaceData}>All</button> */}
@@ -213,7 +210,6 @@ const BrowseSpace = () => {
                 </li>
               </ul>
             </nav>
-
           </div>
         </div>
       </div>
