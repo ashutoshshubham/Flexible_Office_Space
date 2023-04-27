@@ -1,3 +1,4 @@
+import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,14 +31,24 @@ const BrowseSpace = () => {
     }
   };
 
+  // const filterBar = () => {
+  //   return <div className="card">
+  //     <div className="card-header">
+  //       <h4 className="m-0">Filter Spaces</h4>
+  //     </div>
+  //     <div className="card-body"></div>
+  //     <div className="card-footer"></div>
+  //   </div>
+  // }
+
   const filterBar = () => {
-    return <div className="card">
-      <div className="card-header">
-        <h4 className="m-0">Filter Spaces</h4>
-      </div>
-      <div className="card-body"></div>
-      <div className="card-footer"></div>
-    </div>
+    return (
+      <MDBAccordion flush className="border border-success rounded-7 text-center">
+        <MDBAccordionItem collapseId={1} headerTitle='Filter Space'>
+          {displayCategoryData()}
+        </MDBAccordionItem>
+      </MDBAccordion>
+    )
   }
 
 
@@ -55,16 +66,23 @@ const BrowseSpace = () => {
 
 
   const displayCategoryData = () => {
-    return categories.map((cat, index) => (
-      <div className="mx-2" key={index}>
-        <button
-          className={`btn ${selCategory === index ? "btn-secondary" : "btn-primary"
-            } btn-rounded`} onClick={() => { filterSpace('name', `${cat}`) }}
-        >
-          {cat}
-        </button>
+    return (
+
+      <div>
+        <button className="btn btn-primary btn-rounded" onClick={fetchAllSpaceData}>All</button>
+        {categories.map((cat, index) => (
+          <div className="mx-2 text-center" key={index}>
+            <button
+              className={`btn ${selCategory === index ? "btn-secondary" : "btn-primary mt-3"
+                } btn-rounded`} onClick={() => { filterSpace('name', `${cat}`) }}
+            >
+              {cat}
+            </button>
+          </div>
+        ))}
       </div>
-    ));
+
+    )
   };
 
   useEffect(() => {
@@ -90,7 +108,8 @@ const BrowseSpace = () => {
                     <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                       <div className="bg-image hover-zoom ripple rounded ripple-surface">
                         <img
-                          src={space.image ? space.image : "/images/space-placeholder.jpg"}
+                          // src={space.image ? space.image : "/images/space-placeholder.jpg"}
+                          src={'http://localhost:5000/' + space.image}
                           className="w-100"
                           alt=""
                         />
@@ -161,8 +180,8 @@ const BrowseSpace = () => {
           </div>
           <div className="col-md-9">
             <div className="d-flex">
-              <button className="btn btn-primary btn-rounded" onClick={fetchAllSpaceData}>All</button>
-              <div className="d-flex">{displayCategoryData()}</div>
+              {/* <button className="btn btn-primary btn-rounded" onClick={fetchAllSpaceData}>All</button> */}
+              {/* <div className="d-flex">{displayCategoryData()}</div> */}
             </div>
 
             <hr />

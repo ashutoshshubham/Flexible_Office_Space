@@ -1,6 +1,7 @@
 import { Formik, useFormik } from 'formik';
 import { MDBInput, MDBTextArea } from 'mdb-react-ui-kit';
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AddSpace = () => {
@@ -8,7 +9,12 @@ const AddSpace = () => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('vendor')))
     console.log(currentUser)
 
+    const [imageData, setImageData] = useState(null)
+
+    const url = 'http://localhost:5000'
+
     const spaceData = async (formdata, { resetForm }) => {
+        formdata.image = imageData;
         const res = await fetch('http://localhost:5000/addSpace/add', {
             method: 'POST',
             body: JSON.stringify(formdata),
@@ -28,11 +34,29 @@ const AddSpace = () => {
             })
             const data = await res.json();
             console.log(data)
-            // resetForm();
+            resetForm();
             // return data._id;
             // navigate('/user');
         }
     }
+
+    const uploadFile = (e) => {
+        const file = e.target.files[0];
+        const fd = new FormData();
+        fd.append("myfile", file);
+        fetch(url + "/util/uploadfile", {
+            method: "POST",
+            body: fd,
+        }).then((res) => {
+            if (res.status === 200) {
+                console.log("file uploaded");
+                // console.log(file.name);
+                // console.log(file);
+                setImageData(file.name);
+                
+            }
+        });
+    };
 
 
 
@@ -63,6 +87,7 @@ const AddSpace = () => {
                                             rate: '',
                                             location: '',
                                             facilities: '',
+                                            image: '',
                                             user: currentUser._id
                                         }}
                                         onSubmit={spaceData}>
@@ -99,7 +124,7 @@ const AddSpace = () => {
 
                                                 <div className="my-3">
                                                     <label className="form-label mx-2" for="typeText">Upload Image</label>
-                                                    <input type="file" id="" />
+                                                    <input type="file" id="" onChange={uploadFile}/>
                                                 </div>
 
                                                 <button type="submit" className="btn btn-success w-100">

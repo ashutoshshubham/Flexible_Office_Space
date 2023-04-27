@@ -12,7 +12,8 @@ import Swal from 'sweetalert2';
 const ManageSpace = () => {
 
     const [currentVendor, setCurrentVendor] = useState(JSON.parse(sessionStorage.getItem('vendor')))
-    console.log(currentVendor)
+    console.log(currentVendor);
+
 
     const [spaceData, setSpaceData] = useState([])
     const [loading, setLoading] = useState(false)
@@ -96,6 +97,9 @@ const ManageSpace = () => {
                                             <Typography>
                                                 Facilities : {space.facilities}
                                             </Typography>
+
+                                            <img src={'http://localhost:5000/'+space.image} alt="space image" width="50%" height="50%" className='my-3'/>
+
                                         </Typography>
                                     </AccordionDetails>
                                     <Link to={'/vendor/updateData/' + space._id}>

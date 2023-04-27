@@ -20,6 +20,7 @@ import SpaceDetails from './components/main/SpaceDetails';
 import Booking from './components/user/Booking';
 import VendorProvider from './context/VendorProvider';
 
+
 function App() {
 
   const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem("user")));

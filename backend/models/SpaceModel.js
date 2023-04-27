@@ -9,6 +9,7 @@ const mySchema = new Schema({
     rate : String,
     facilities : String,
     location : String,
+    image : String,
     user : {type : Types.ObjectId, ref: 'users'}
 
 })

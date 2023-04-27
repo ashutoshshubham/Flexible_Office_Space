@@ -28,27 +28,38 @@ const SpaceDetails = () => {
       <div className="card">
         <div className="card-body">
           <h2 className="card-title">{space.name}</h2>
-          <p className="card-text">
-            <b>Size :</b> {space.size} sq feet
-          </p>
-          <p className="card-text">
-             <b>Rate : ₹</b> {space.rate} per hours
-          </p>
-          <p className="card-text">
-            <b>Location :</b> {space.location}
-          </p>
-          <p className="card-text">
-            <b>Facilities :</b> {space.facilities}
-          </p>
-          <p className="card-text">
-            <b>Vendor's Name :</b> {space.providerName}
-          </p>
-          <p className="card-text">
-            <b>Vendor's Contact :</b> {space.providerContact}
-          </p>
-          <p className="card-text">
-            <b>Vendor's Email :</b> {space.providerEmail}
-          </p>
+
+          <div className="row">
+            <div className='col-md-8'>
+              <p className="card-text">
+                <b>Size :</b> {space.size} sq feet
+              </p>
+              <p className="card-text">
+                <b>Rate : ₹</b> {space.rate} per hours
+              </p>
+              <p className="card-text">
+                <b>Location :</b> {space.location}
+              </p>
+              <p className="card-text">
+                <b>Facilities :</b> {space.facilities}
+              </p>
+              <p className="card-text">
+                <b>Vendor's Name :</b> {space.providerName}
+              </p>
+              <p className="card-text">
+                <b>Vendor's Contact :</b> {space.providerContact}
+              </p>
+              <p className="card-text">
+                <b>Vendor's Email :</b> {space.providerEmail}
+              </p>
+            </div>
+
+            <div className="col-md-4 ">
+              <img src={'http://localhost:5000/' + space.image} alt="" 
+              className='w-100 rounded-5'/>
+            </div>
+          </div>
+
           {/* <button type="button" className="btn btn-primary">
             Button
           </button> */}
