@@ -1,17 +1,37 @@
 import { Formik, useFormik } from 'formik';
 import { MDBInput, MDBTextArea } from 'mdb-react-ui-kit';
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AddSpace = () => {
+
+    const { spaceid } = useParams()
 
     const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('vendor')))
     console.log(currentUser)
 
     const [imageData, setImageData] = useState(null)
+    const [vendor, setVendor] = useState([])
 
     const url = 'http://localhost:5000'
+
+
+    const moreDetails = async () => {
+
+        // console.log(id);
+
+        const res = await fetch('http://localhost:5000/vendor/getbyid/' + spaceid)
+        console.log(res.status);
+        if (res.status === 200) {
+            const data = await res.json()
+            setVendor(data)
+            console.log(data);
+        }
+    }
+
+
+
 
     const spaceData = async (formdata, { resetForm }) => {
         formdata.image = imageData;
@@ -53,11 +73,14 @@ const AddSpace = () => {
                 // console.log(file.name);
                 // console.log(file);
                 setImageData(file.name);
-                
+
             }
         });
     };
 
+    useEffect(() => {
+        moreDetails();
+    }, []);
 
 
 
@@ -124,7 +147,7 @@ const AddSpace = () => {
 
                                                 <div className="my-3">
                                                     <label className="form-label mx-2" for="typeText">Upload Image</label>
-                                                    <input type="file" id="" onChange={uploadFile}/>
+                                                    <input type="file" id="" onChange={uploadFile} />
                                                 </div>
 
                                                 <button type="submit" className="btn btn-success w-100">

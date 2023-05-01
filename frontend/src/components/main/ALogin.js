@@ -2,13 +2,13 @@ import { Formik } from 'formik'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import { useUserContext } from '../../context/UserProvider'
+import { useAdminContext } from '../../context/AdminProvider'
 
-const Login = () => {
+const ALogin = () => {
 
     const navigate = useNavigate()
 
-    const {loggedIn, setLoggedIn} = useUserContext();
+    const {loggedIn, setLoggedIn} = useAdminContext();
 
 
     const loginSubmit = async (formdata, { resetForm, setSubmitting }) => {
@@ -16,7 +16,7 @@ const Login = () => {
 
         setSubmitting(true)
 
-        const res = await fetch('http://localhost:5000/user/authenticate', {
+        const res = await fetch('http://localhost:5000/admin/authenticate', {
             method: 'POST',
             body: JSON.stringify(formdata),
             headers: {
@@ -35,8 +35,8 @@ const Login = () => {
             setLoggedIn(true)       //to show logout button without page refresh
             const data = await res.json();
             console.log(data);
-            sessionStorage.setItem('user', JSON.stringify(data));
-            navigate('/user/')
+            sessionStorage.setItem('admin', JSON.stringify(data));
+            navigate('/admin/')
             resetForm();
         }
         else if (res.status === 401) {
@@ -70,7 +70,7 @@ const Login = () => {
             <div className="login-card-position">
                 <div className="card mx-auto w-50">
                     <div className="card-body">
-                        <h1 className="card-title text-center">USER LOGIN</h1>
+                        <h1 className="card-title text-center">ADMIN LOGIN</h1>
 
 
                         <Formik
@@ -96,7 +96,7 @@ const Login = () => {
                                 
                             )}
                         </Formik>
-                        <p className='text-center mt-2'>Don't have account? <Link to='/main/signup'>SignIn</Link></p>
+                        <p className='text-center mt-2'>Don't have account? <Link to='/main/asignup'>SignIn</Link></p>
                     </div>
                 </div>
             </div>
@@ -104,4 +104,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default ALogin

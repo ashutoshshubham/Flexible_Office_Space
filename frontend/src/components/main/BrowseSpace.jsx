@@ -100,6 +100,7 @@ const BrowseSpace = () => {
     if (!loading) {
       return (
         allSpaceData.map((space, index) => (
+
           <div className="row justify-content-center mb-3" key={space._id}>
             <div className="col-md-12 col-xl-12">
               <div className="card shadow-0 border rounded-3">
@@ -160,6 +161,7 @@ const BrowseSpace = () => {
               </div>
             </div>
           </div>
+          
         ))
       );
     } else {

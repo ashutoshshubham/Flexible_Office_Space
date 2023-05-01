@@ -1,23 +1,23 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useUserContext } from "../../context/UserProvider";
+import { useAdminContext } from '../../context/AdminProvider';
 
 
 const NavBar = () => {
 
-    const { loggedIn, setLoggedIn, logout } = useUserContext();
+    const { loggedIn, setLoggedIn, logout } = useAdminContext();
 
     const showLoggedIn = () => {
         if (!loggedIn) {
             return (
                 <>
                     <li className="nav-item">
-                        <NavLink className="nav-link text-white" aria-current="page" to="/main/login">
+                        <NavLink className="nav-link text-white" aria-current="page" to="/main/alogin">
                             Login
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link text-white" aria-current="page" to="/main/signup">
+                        <NavLink className="nav-link text-white" aria-current="page" to="/main/asignup">
                             SignUp
                         </NavLink>
                     </li>
@@ -26,17 +26,17 @@ const NavBar = () => {
         }
     }
 
-    // const showLogout = () => {
-    //     if (loggedIn) {
-    //         return (
-    //             <li className="nav-item">
-    //                 <button className="btn btn-danger ms-3" aria-current="page" onClick={logout}>
-    //                     Logout
-    //                 </button>
-    //             </li>
-    //         );
-    //     }
-    // }
+    const showLogout = () => {
+        if (loggedIn) {
+            return (
+                <li className="nav-item">
+                    <button className="btn btn-danger ms-3" aria-current="page" onClick={logout}>
+                        Logout
+                    </button>
+                </li>
+            );
+        }
+    }
 
 
 
@@ -44,7 +44,7 @@ const NavBar = () => {
     return (
         <div>
 
-            <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+            <nav className="navbar navbar-expand-lg navbar-dark" style={{backgroundColor:'purple'}}>
 
 
                 {/* Container wrapper */}
@@ -80,28 +80,13 @@ const NavBar = () => {
                         {/* Left links */}
                         <ul className="navbar-nav mb-2 mb-lg-0 fs-5">
                             <li className="nav-item ">
-                                <NavLink className="nav-link text-white" aria-current="page" to="home">
+                                <NavLink className="nav-link text-white" aria-current="page" to="/main/home">
                                     Home
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link text-white" aria-current="page" to="browsespace">
+                                <NavLink className="nav-link text-white" aria-current="page" to="/main/browsespace">
                                     Browse Space
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link text-white" aria-current="page" to="/main/asignup">
-                                    Admin
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link text-white" aria-current="page" to="/main/vsignup">
-                                    Vendor
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link text-white" aria-current="page" to="/main/signup">
-                                    User
                                 </NavLink>
                             </li>
                             {/* <li className="nav-item">
@@ -115,8 +100,8 @@ const NavBar = () => {
                                 </NavLink>
                             </li> */}
 
-                            {/* {showLoggedIn()} */}
-                            {/* {showLogout()} */}
+                            {showLoggedIn()}
+                            {showLogout()}
 
 
                         </ul>

@@ -3,6 +3,8 @@ const express = require('express');          //method to import any package, her
 //import userRouter
 const userRouter = require('./routers/userRouter');
 const spaceRouter = require('./routers/SpaceRouter');
+const adminRouter = require('./routers/adminRouter');
+const vendorRouter = require('./routers/vendorRouter');
 const utilRouter = require('./routers/util')
 
 
@@ -40,6 +42,8 @@ app.use(cors({
 app.use(express.json());                 //convert data from json to js
 app.use('/user', userRouter);            //sending request to userRouter
 app.use('/addSpace', spaceRouter);            //sending request to userRouter
+app.use('/admin', adminRouter);            
+app.use('/vendor', vendorRouter);            
 app.use('/util', utilRouter);       
 app.use(express.static('./static/uploads'))     
 

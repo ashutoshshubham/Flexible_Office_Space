@@ -2,9 +2,11 @@
 
 const {Router} = require('express');       // importing Router from express
 
-const Model = require('../models/SpaceModel')  //importing model from userModel
+const Model = require('../models/vendorModel')  //importing model from userModel
 
 
+//initilizing express
+// const router = express.Router();
 
 const router = Router();
 
@@ -37,15 +39,15 @@ router.get('/getall', (req,res) => {
 })
 
 
-// router.get('/getbyemail/:useremail', (req,res) => {
-//     Model.find({email : req.params.useremail})
-//     .then((result) => {
-//         res.json(result);
-//     }).catch((err) => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     });
-// });
+router.get('/getbyemail/:useremail', (req,res) => {
+    Model.find({email : req.params.useremail})
+    .then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 //using colon means it is url parameter.
 //post use body, get use params
 
@@ -86,17 +88,6 @@ router.delete('/delete/:userid', (req,res) => {
 
 router.get('/getbyid/:userid', (req, res) => {
     Model.findById(req.params.userid)
-    .then((result) => {
-        res.json(result);
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-})
-
-
-router.get('/getbyuser/:userid', (req, res) => {
-    Model.find({user : req.params.userid})
     .then((result) => {
         res.json(result);
     }).catch((err) => {

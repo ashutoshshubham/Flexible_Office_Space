@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import { Formik } from 'formik'
 import Swal from 'sweetalert2'
 
-const SignUp = () => {
+const VSignUp = () => {
 
     const userData = async (formdata, { resetForm }) => {
-        const res = await fetch('http://localhost:5000/user/add', {
+        const res = await fetch('http://localhost:5000/vendor/add', {
             method: 'POST',
             body: JSON.stringify(formdata),
             headers: {
@@ -41,7 +41,7 @@ const SignUp = () => {
 
                 <div className="card w-50 mx-auto">
                     <div className="card-body">
-                        <h1 className="card-title text-center">CREATE USER ACCOUNT</h1>
+                        <h1 className="card-title text-center">CREATE VENDOR ACCOUNT</h1>
 
                         <Formik
                             initialValues={{ name: "", email: "", password: "" }}
@@ -69,7 +69,7 @@ const SignUp = () => {
                             }
                         </Formik>
 
-                        <p className='text-center'>Already have account? <Link to='/main/login'>LogIn</Link></p>
+                        <p className='text-center'>Already have account? <Link to='/main/vlogin'>LogIn</Link></p>
 
 
                     </div>
@@ -82,4 +82,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+export default VSignUp
