@@ -1,164 +1,115 @@
-import React, { useEffect, useState } from 'react'
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import React, { useEffect, useState } from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import app_config from "../../config";
 
+const ManageBookings = () => {
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+  console.log(currentUser);
 
-const ManageSpace = () => {
+  const [spaceData, setSpaceData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { apiUrl } = app_config;
 
-    const [currentVendor, setCurrentVendor] = useState(JSON.parse(sessionStorage.getItem('vendor')))
-    console.log(currentVendor);
+  const fetchSpaceData = async () => {
+    setLoading(true);
+    const res = await fetch(
+      "http://localhost:5000/book/getbyuser/" + currentUser._id
+    );
+    setLoading(false);
+    console.log(res.status);
+    // console.log(currentUser._id)
 
-
-    const [spaceData, setSpaceData] = useState([])
-    const [loading, setLoading] = useState(false)
-
-    const fetchSpaceData = async () => {
-        setLoading(true);
-        const res = await fetch('http://localhost:5000/addSpace/getbyuser/' + currentVendor._id)
-        setLoading(false);
-        console.log(res.status)
-        // console.log(currentUser._id)
-
-        if (res.status === 200) {
-            const data = await res.json();
-            console.log(data)
-            setSpaceData(data)
-        }
+    if (res.status === 200) {
+      const data = await res.json();
+      console.log(data);
+      setSpaceData(data);
     }
+  };
 
-    useEffect(() => {
-        fetchSpaceData();
-    }, [])
+  useEffect(() => {
+    fetchSpaceData();
+  }, []);
 
-    const deleteSpaceData = async (id) => {
-        console.log(id);
-        const res = await fetch('http://localhost:5000/addSpace/delete/' + id, {
-            method: "DELETE",
-        })
-        console.log(res.status);
-        if (res.status === 200) {
-            fetchSpaceData();
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Data Deleted Successfully'
-            })
-        }
+  const deleteSpaceData = async (id) => {
+    console.log(id);
+    const res = await fetch("http://localhost:5000/addSpace/delete/" + id, {
+      method: "DELETE",
+    });
+    console.log(res.status);
+    if (res.status === 200) {
+      fetchSpaceData();
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Data Deleted Successfully",
+      });
     }
+  };
 
-
-
-
-    const displayDetails = () => {
-
-        if (!loading && spaceData) {
-            return (
-                <div className='row'>
-                    {
-                        spaceData.map((space) => (
-
-                            // <div className="row">
-
-                            <div className="col-md-6">
-                                <Accordion className='mt-3 border border-success rounded-6'>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                    >
-                                        <Typography><h2>{space.name}</h2></Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <Typography>
-                                            <Typography>
-                                                Provider's Name : {space.providerName}
-                                            </Typography>
-                                            <Typography>
-                                                Provider's Contact : {space.providerContact}
-                                            </Typography>
-                                            <Typography>
-                                                Provider's Email : {space.providerEmail}
-                                            </Typography>
-                                            <Typography>
-                                                Size : {space.size} sq feet
-                                            </Typography>
-                                            <Typography>
-                                                Rate : ₹ {space.rate} per hours
-                                            </Typography>
-                                            <Typography>
-                                                Location : {space.location}
-                                            </Typography>
-                                            <Typography>
-                                                Facilities : {space.facilities}
-                                            </Typography>
-
-                                            <img src={'http://localhost:5000/'+space.image} alt="space image" width="50%" height="50%" className='my-3'/>
-
-                                        </Typography>
-                                    </AccordionDetails>
-                                    <Link to={'/vendor/updateData/' + space._id}>
-                                        <Button variant="contained" color='success' sx={{ marginLeft: '15px', marginBottom: '15px' }}>Update Data</Button>
-                                    </Link>
-                                    <Button variant="contained" color='error' sx={{ marginLeft: '15px', marginBottom: '15px' }} onClick={() => (deleteSpaceData(space._id))}>Delete</Button>
-                                </Accordion>
-                            </div>
-
-                            // </div>
-                        ))
-
-
-                    }
+  const displayDetails = () => {
+    if (!loading && spaceData) {
+      return spaceData.map((order) => (
+        <Accordion className="mt-3 border border-success rounded-6">
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>
+              <div className="row w-100">
+                <div className="col-8">
+                  <p className="h3">{order.space.name}</p>
                 </div>
-
-            )
-        }
-
+                <div className="col-4">
+                  <p className="h4">
+                    {new Date(order.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+              </div>
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <h3>Space Details</h3>
+            <hr />
+            <img src={apiUrl + "/" + order.space.image} alt="" />
+            <p className="h5">Location : {order.space.location}</p>
+            <p className="h6">{order.space.facilities}</p>
+            <p className="h5">Provider Name : {order.space.providerName}</p>
+            <p className="h5">Provider Email : {order.space.providerEmail}</p>
+            <p className="h5">
+              Provider Contact : {order.space.providerContact}
+            </p>
+            <p className="h5">
+              Space Size :{" "}
+              <span className="h1">{order.space.size} sq. ft.</span>
+            </p>
+            <p className="h5 float-end">
+              Amount Paid : <span className="display-4">₹{order.amount}</span>
+            </p>
+          </AccordionDetails>
+          <Button
+            variant="contained"
+            color="error"
+            sx={{ marginLeft: "15px", marginBottom: "15px" }}
+            // onClick={() => deleteorderData(space._id)}
+          >
+            Cancel Booking
+          </Button>
+        </Accordion>
+      ));
     }
+  };
 
-
-
-
-
-    return (
-
-        // <div className='container'>
-        //     <Accordion className='mt-3 border border-success rounded-6'>
-        //         <AccordionSummary
-        //             expandIcon={<ExpandMoreIcon />}
-        //             aria-controls="panel1a-content"
-        //             id="panel1a-header"
-        //         >
-        //             <Typography><h2>Accordion 1</h2></Typography>
-        //         </AccordionSummary>
-        //         <AccordionDetails>
-        //             <Typography>
-        //                 <Typography>
-        //                     Size : {spaceData.size} sq feet
-        //                 </Typography>
-        //                 <Typography>
-        //                     Rate : {spaceData.rate} per hours
-        //                 </Typography>
-        //                 <Typography>
-        //                     Location : {spaceData.location}
-        //                 </Typography>
-        //                 <Typography>
-        //                     Facilities : {spaceData.facilities}
-        //                 </Typography>
-        //             </Typography>
-        //         </AccordionDetails>
-        //     </Accordion>
-        // </div>
-
-        <div className='container'>
-            {displayDetails()}
-        </div>
-    )
-}
+  return <div className="container">{displayDetails()}</div>;
+};
 
 export default ManageBookings;

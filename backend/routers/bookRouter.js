@@ -10,9 +10,7 @@ const router = Router();
 
 router.post('/add', (req, res) => {
     console.log(req.body);
-
-    new Model(req.body).save()      //saving data in database
-
+    new Model(req.body).save() //saving data in database
     .then((result) => {
         res.json(result)   //converting result into json
     }).catch((err) => {
@@ -96,7 +94,7 @@ router.get('/getbyid/:userid', (req, res) => {
 
 
 router.get('/getbyuser/:userid', (req, res) => {
-    Model.find({user : req.params.userid})
+    Model.find({user : req.params.userid}).populate('space').populate('user')
     .then((result) => {
         res.json(result);
     }).catch((err) => {
