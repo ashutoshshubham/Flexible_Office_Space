@@ -1,10 +1,12 @@
 import React from 'react'
 import './style.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik } from 'formik'
 import Swal from 'sweetalert2'
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
 
     const userData = async (formdata, { resetForm }) => {
         const res = await fetch('http://localhost:5000/user/add', {
@@ -27,8 +29,8 @@ const SignUp = () => {
             const data = await res.json();
             console.log(data)
             resetForm();
+            navigate('/main/login');
             // return data._id;
-            // navigate('/user');
         }
     }
 

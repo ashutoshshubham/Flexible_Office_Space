@@ -5,13 +5,14 @@ const mySchema = new Schema({
     providerContact : Number,
     providerEmail : String,
     name : String,
-    size : String,
-    rate : String,
+    size : Number,
+    rate : Number,
     facilities : String,
+    city : String,
+    state: String,
     location : String,
     image : String,
-    user : {type : Types.ObjectId, ref: 'users'}
-
+    vendor : {type : Types.ObjectId, ref: 'vendor'}
 })
 
 module.exports = model('addSpaces', mySchema);

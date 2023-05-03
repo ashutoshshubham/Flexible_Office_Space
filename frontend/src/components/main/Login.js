@@ -12,9 +12,9 @@ const Login = () => {
 
 
     const loginSubmit = async (formdata, { resetForm, setSubmitting }) => {
-        console.log(formdata)
+        console.log(formdata);
 
-        setSubmitting(true)
+        setSubmitting(true);
 
         const res = await fetch('http://localhost:5000/user/authenticate', {
             method: 'POST',
@@ -36,7 +36,7 @@ const Login = () => {
             const data = await res.json();
             console.log(data);
             sessionStorage.setItem('user', JSON.stringify(data));
-            navigate('/user/')
+            navigate('/main/browseSpace')
             resetForm();
         }
         else if (res.status === 401) {

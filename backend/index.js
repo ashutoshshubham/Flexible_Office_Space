@@ -5,6 +5,7 @@ const userRouter = require('./routers/userRouter');
 const spaceRouter = require('./routers/SpaceRouter');
 const adminRouter = require('./routers/adminRouter');
 const vendorRouter = require('./routers/vendorRouter');
+const bookRouter = require('./routers/bookRouter');
 const utilRouter = require('./routers/util')
 
 
@@ -43,8 +44,10 @@ app.use(express.json());                 //convert data from json to js
 app.use('/user', userRouter);            //sending request to userRouter
 app.use('/addSpace', spaceRouter);            //sending request to userRouter
 app.use('/admin', adminRouter);            
-app.use('/vendor', vendorRouter);            
+app.use('/vendor', vendorRouter); 
+app.use('/book', bookRouter);           
 app.use('/util', utilRouter);       
+
 app.use(express.static('./static/uploads'))     
 
 

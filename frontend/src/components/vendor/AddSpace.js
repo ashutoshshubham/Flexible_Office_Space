@@ -29,10 +29,6 @@ const AddSpace = () => {
             console.log(data);
         }
     }
-
-
-
-
     const spaceData = async (formdata, { resetForm }) => {
         formdata.image = imageData;
         const res = await fetch('http://localhost:5000/addSpace/add', {
@@ -111,7 +107,7 @@ const AddSpace = () => {
                                             location: '',
                                             facilities: '',
                                             image: '',
-                                            user: currentUser._id
+                                            vendor: currentUser._id
                                         }}
                                         onSubmit={spaceData}>
 

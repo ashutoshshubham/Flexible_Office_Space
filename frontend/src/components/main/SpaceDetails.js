@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const SpaceDetails = () => {
 
@@ -60,9 +60,13 @@ const SpaceDetails = () => {
             </div>
           </div>
 
-          {/* <button type="button" className="btn btn-primary">
-            Button
-          </button> */}
+          <Link
+                        to={`/user/book/${space._id}`}
+                        className="btn btn-primary btn-lg mt-5"
+                        type="button"
+                      >
+                        Book Now
+                      </Link>
         </div>
       </div>
     )
