@@ -133,9 +133,8 @@ const BrowseSpace = () => {
         {categories.map((cat, index) => (
           <div className="mx-2 text-center" key={index}>
             <button
-              className={`btn ${
-                selCategory === index ? "btn-secondary" : "btn-primary mt-3"
-              } btn-rounded`}
+              className={`btn ${selCategory === index ? "btn-secondary" : "btn-primary mt-3"
+                } btn-rounded`}
               onClick={() => {
                 filterSpace("name", `${cat}`);
               }}
@@ -272,10 +271,10 @@ const BrowseSpace = () => {
                   type="checkbox"
                   checked={range === selPriceRange}
                   onChange={(e) => {
-                    if(e.target.checked){
+                    if (e.target.checked) {
                       setSelPriceRange(range);
                       filterSpace("rate", range);
-                    }else{
+                    } else {
                       setSelPriceRange(null);
                       fetchAllSpaceData();
                     }
@@ -285,9 +284,9 @@ const BrowseSpace = () => {
               </div>
             ))}
 
-<hr className="mt-3" />
+            <hr className="mt-3" />
             <h3>Select Location</h3>
-            
+
             {cities.map((city) => (
               <div class="form-check">
                 <input
@@ -295,11 +294,11 @@ const BrowseSpace = () => {
                   type="checkbox"
                   checked={city === selCity}
                   onChange={(e) => {
-                    if(e.target.checked){
+                    if (e.target.checked) {
                       setSelCity(city);
                       // --------------------------to change to city
                       filterSpace("location", city);
-                    }else{
+                    } else {
                       setSelCity(null);
                       fetchAllSpaceData();
                     }
@@ -308,7 +307,7 @@ const BrowseSpace = () => {
                 <label class="form-check-label">{city}</label>
               </div>
             ))}
-            
+
           </div>
           <div className="col-md-9">
             <div className="d-flex">

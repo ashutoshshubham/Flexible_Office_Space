@@ -78,9 +78,9 @@ const NavBar = () => {
                             {/* <NavLink className="nav-link text-white" aria-current="page" to="/main/home">
                                 <b>HOME</b>
                             </NavLink> */}
-                            {/* <NavLink className="nav-link text-white" aria-current="page" to="/user/add_space">
-                                <b>ADD SPACE</b>
-                            </NavLink> */}
+                            <NavLink className="nav-link text-white" aria-current="page" to="/user/managebooking">
+                                <b>Manage Booking</b>
+                            </NavLink>
                             {/* <NavLink className="nav-link text-white" to="/user/manage_space">
                                 <b>MANAGE SPACE</b>
                             </NavLink> */}

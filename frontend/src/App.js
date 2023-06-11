@@ -65,7 +65,7 @@ function App() {
                 <Route element={<UserProfile />} path='profile' />
                 <Route element={<ManageBookings />} path='managebooking' />
                 <Route element={<Booking />} path='book/:spaceid' />
-                <Route element={<ManageBookings />} path='managebooking' />
+                {/* <Route element={<ManageBookings />} path='managebooking' /> */}
               </Route>
 
               {/* <Route element={<Vendor />} path='vendor'> */}

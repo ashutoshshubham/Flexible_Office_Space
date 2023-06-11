@@ -11,7 +11,7 @@ const NavBar = () => {
         if (!loggedIn) {
             return (
                 <>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <NavLink className="nav-link text-white" aria-current="page" to="/main/login">
                             Login
                         </NavLink>
@@ -20,23 +20,42 @@ const NavBar = () => {
                         <NavLink className="nav-link text-white" aria-current="page" to="/main/signup">
                             SignUp
                         </NavLink>
+                    </li> */}
+
+
+
+
+                    <li className="nav-item">
+                        <NavLink className="nav-link text-white" aria-current="page" to="/main/asignup">
+                            Admin
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link text-white" aria-current="page" to="/main/vsignup">
+                            Vendor
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link text-white" aria-current="page" to="/main/signup">
+                            User
+                        </NavLink>
                     </li>
                 </>
             );
         }
     }
 
-    // const showLogout = () => {
-    //     if (loggedIn) {
-    //         return (
-    //             <li className="nav-item">
-    //                 <button className="btn btn-danger ms-3" aria-current="page" onClick={logout}>
-    //                     Logout
-    //                 </button>
-    //             </li>
-    //         );
-    //     }
-    // }
+    const showLogout = () => {
+        if (loggedIn) {
+            return (
+                <li className="nav-item">
+                    <button className="btn btn-danger ms-3" aria-current="page" onClick={logout}>
+                        Logout
+                    </button>
+                </li>
+            );
+        }
+    }
 
 
 
@@ -89,7 +108,7 @@ const NavBar = () => {
                                     Browse Space
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <NavLink className="nav-link text-white" aria-current="page" to="/main/asignup">
                                     Admin
                                 </NavLink>
@@ -103,7 +122,7 @@ const NavBar = () => {
                                 <NavLink className="nav-link text-white" aria-current="page" to="/main/signup">
                                     User
                                 </NavLink>
-                            </li>
+                            </li> */}
                             {/* <li className="nav-item">
                                 <NavLink className="nav-link text-white" to="login">
                                     Login
@@ -115,8 +134,8 @@ const NavBar = () => {
                                 </NavLink>
                             </li> */}
 
-                            {/* {showLoggedIn()} */}
-                            {/* {showLogout()} */}
+                            {showLoggedIn()}
+                            {showLogout()}
 
 
                         </ul>
